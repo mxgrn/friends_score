@@ -1,10 +1,11 @@
 class ScoresController < ApplicationController
+  before_action :set_user
   before_action :set_score, only: [:show, :edit, :update, :destroy]
 
   # GET /scores
   # GET /scores.json
   def index
-    @scores = Score.all
+    @scores = @user.scores
   end
 
   # GET /scores/1
@@ -14,7 +15,7 @@ class ScoresController < ApplicationController
 
   # GET /scores/new
   def new
-    @score = Score.new
+    @score = @user.scores.new
   end
 
   # GET /scores/1/edit
@@ -24,11 +25,11 @@ class ScoresController < ApplicationController
   # POST /scores
   # POST /scores.json
   def create
-    @score = Score.new(score_params)
+    @score = @user.scores.new(score_params)
 
     respond_to do |format|
       if @score.save
-        format.html { redirect_to @score, notice: 'Score was successfully created.' }
+        format.html { redirect_to user_scores_path(@user), notice: 'Score was successfully created.' }
         format.json { render :show, status: :created, location: @score }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class ScoresController < ApplicationController
   def update
     respond_to do |format|
       if @score.update(score_params)
-        format.html { redirect_to @score, notice: 'Score was successfully updated.' }
+        format.html { redirect_to user_scores_path(@user), notice: 'Score was successfully updated.' }
         format.json { render :show, status: :ok, location: @score }
       else
         format.html { render :edit }
@@ -56,12 +57,25 @@ class ScoresController < ApplicationController
   def destroy
     @score.destroy
     respond_to do |format|
-      format.html { redirect_to scores_url, notice: 'Score was successfully destroyed.' }
+      format.html { redirect_to user_scores_path(@user), notice: 'Score was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_user
+      if params[:user_id].nil?
+        @user = current_user
+        return
+      end
+
+      @user = if current_user.role == :admin
+        User.find(params[:user_id])
+      else
+        current_user
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_score
       @score = Score.find(params[:id])

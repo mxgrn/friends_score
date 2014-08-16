@@ -1,22 +1,10 @@
-%h1 Listing scores
+%h1 Scores for #{@user.email}
 
-%table
-  %tr
-    %th Value
-    %th Game level
-    %th User
-    %th Ascending
-    %th
-    %th
-    %th
-
+%table.table
   - @scores.each do |score|
     %tr
-      %td= score.value
-      %td= score.game_level_id
-      %td= score.user_id
-      %td= score.ascending
-      %td= link_to 'Show', score
+      %td= link_to score.value, score
+      %td= link_to score.game_level.full_title, game_game_levels_path(score.game_level.game)
       %td= link_to 'Edit', edit_score_path(score)
       %td= link_to 'Destroy', score, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
