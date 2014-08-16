@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Value:
+  = @score.value
+%p
+  %b Game level:
+  = @score.game_level_id
+%p
+  %b User:
+  = @score.user_id
+%p
+  %b Ascending:
+  = @score.ascending
+
+= link_to 'Edit', edit_score_path(@score)
+\|
+= link_to 'Back', scores_path

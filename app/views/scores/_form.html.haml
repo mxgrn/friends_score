@@ -1,0 +1,11 @@
+= simple_form_for(@score) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :value
+    = f.input :game_level_id, as: :select, collection: GameLevel.all
+    = f.input :user_id
+    = f.input :ascending
+
+  .form-actions
+    = f.button :submit
