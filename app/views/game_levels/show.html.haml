@@ -5,8 +5,9 @@
   = @game_level.title
 %p
   %b Game:
-  = @game_level.game_id
+  = @game_level.game.title
+%p
+  %b Order:
+  = @game_level.order
 
-= link_to 'Edit', edit_game_level_path(@game_level)
-\|
-= link_to 'Back', game_levels_path
+= link_to 'Edit', edit_game_game_level_path(@game, @game_level)

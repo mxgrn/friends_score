@@ -1,4 +1,4 @@
-%h3 Leaderboard
+%h3 Leader board
 %table.table
   %tr
     %th Game
@@ -10,7 +10,8 @@
       %td= score.value
       %td
         - if score.user == current_user
-          .highlight you
+          .text-primary
+            %strong you
         - else
           = score.user.email
 
@@ -26,6 +27,7 @@
       %td= score.value
       %td
         - if score.user == current_user
-          .highlight you
+          .text-primary
+            %strong you
         - else
           = score.user.email

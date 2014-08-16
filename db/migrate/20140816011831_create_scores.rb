@@ -4,7 +4,6 @@ class CreateScores < ActiveRecord::Migration
       t.decimal :value
       t.integer :game_level_id
       t.integer :user_id
-      t.boolean :ascending, default: true
 
       t.timestamps
     end
