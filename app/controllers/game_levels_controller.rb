@@ -25,7 +25,7 @@ class GameLevelsController < ApplicationController
   # POST /game_levels
   # POST /game_levels.json
   def create
-    @game_level = GameLevel.new(game_level_params)
+    @game_level = @game.game_levels.new(game_level_params)
 
     respond_to do |format|
       if @game_level.save

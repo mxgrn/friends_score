@@ -2,9 +2,8 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :game_level_id, as: :grouped_select, collection: Game.all, group_method: :game_levels, include_blank: false, label: 'Game'
+    = f.input :game_level_id, as: :grouped_select, collection: Game.all, group_method: :game_levels, include_blank: false, label: 'Game and level'
     = f.input :value
-    = f.input :ascending
 
   .form-actions
     = f.button :submit
