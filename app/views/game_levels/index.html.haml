@@ -1,11 +1,6 @@
 %h3 Levels for #{@game.title}
 
 %table.table
-  %tr
-    %th Title
-    %th
-    %th
-
   - @game_levels.each do |game_level|
     %tr
       %td= link_to game_level.title, [@game, game_level]

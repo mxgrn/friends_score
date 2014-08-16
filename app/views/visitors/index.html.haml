@@ -15,7 +15,7 @@
               .text-primary
                 %strong you
             - else
-              = score.user.email
+              = score.user.name
 
   .col-md-6
     %h3 Recent scores
@@ -32,4 +32,4 @@
             - if score.user == current_user
               you
             - else
-              = score.user.email
+              = score.user.name
