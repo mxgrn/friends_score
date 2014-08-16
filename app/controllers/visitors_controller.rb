@@ -6,7 +6,7 @@ class VisitorsController < ApplicationController
 
   def build_best_scores
     GameLevel.all.map do |l|
-      best_score = l.scores.order(value: l.order.to_sym).last
-    end.compact!
+      l.scores.order(value: l.order.to_sym).last
+    end.compact
   end
 end
