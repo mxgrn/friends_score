@@ -1,10 +1,11 @@
 class GameLevelsController < ApplicationController
+  before_action :set_game
   before_action :set_game_level, only: [:show, :edit, :update, :destroy]
 
   # GET /game_levels
   # GET /game_levels.json
   def index
-    @game_levels = GameLevel.all
+    @game_levels = @game.game_levels
   end
 
   # GET /game_levels/1
@@ -28,7 +29,7 @@ class GameLevelsController < ApplicationController
 
     respond_to do |format|
       if @game_level.save
-        format.html { redirect_to @game_level, notice: 'Game level was successfully created.' }
+        format.html { redirect_to game_game_levels_path(@game), notice: 'Game level was successfully created.' }
         format.json { render :show, status: :created, location: @game_level }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class GameLevelsController < ApplicationController
   def update
     respond_to do |format|
       if @game_level.update(game_level_params)
-        format.html { redirect_to @game_level, notice: 'Game level was successfully updated.' }
+        format.html { redirect_to game_game_levels_path(@game), notice: 'Game level was successfully updated.' }
         format.json { render :show, status: :ok, location: @game_level }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class GameLevelsController < ApplicationController
   def destroy
     @game_level.destroy
     respond_to do |format|
-      format.html { redirect_to game_levels_url, notice: 'Game level was successfully destroyed.' }
+      format.html { redirect_to game_game_levels_url(@game), notice: 'Game level was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,6 +66,10 @@ class GameLevelsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_game_level
       @game_level = GameLevel.find(params[:id])
+    end
+
+    def set_game
+      @game = Game.find(params[:game_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

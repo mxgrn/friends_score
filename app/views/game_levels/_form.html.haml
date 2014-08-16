@@ -1,9 +1,9 @@
-= simple_form_for(@game_level) do |f|
+= simple_form_for([@game, @game_level]) do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :title
-    = f.input :game_id
+    = f.input :game_id, as: :select, collection: Game.all, include_blank: false
 
   .form-actions
-    = f.button :submit
+    = f.submit :submit, class: 'btn btn-primary'

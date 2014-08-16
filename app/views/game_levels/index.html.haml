@@ -1,21 +1,17 @@
-%h1 Listing game_levels
+%h1 Levels
 
-%table
+%table.table
   %tr
     %th Title
-    %th Game
-    %th
     %th
     %th
 
   - @game_levels.each do |game_level|
     %tr
-      %td= game_level.title
-      %td= game_level.game_id
-      %td= link_to 'Show', game_level
-      %td= link_to 'Edit', edit_game_level_path(game_level)
-      %td= link_to 'Destroy', game_level, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to game_level.title, [@game, game_level]
+      %td= link_to 'Edit', edit_game_game_level_path(@game, game_level)
+      %td= link_to 'Destroy', [@game, game_level], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Game level', new_game_level_path
+= link_to 'New Game level', new_game_game_level_path
