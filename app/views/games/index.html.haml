@@ -1,16 +1,9 @@
-%h1 Listing games
+%h1 Games
 
 %table.table
-  %tr
-    %th Title
-    %th
-    %th
-    %th
-
   - @games.each do |game|
     %tr
       %td= link_to game.title, game_game_levels_path(game)
-      %td= link_to 'Show', game
       %td= link_to 'Edit', edit_game_path(game)
       %td= link_to 'Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
