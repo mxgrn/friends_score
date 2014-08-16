@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140816011831) do
   create_table "game_levels", force: true do |t|
     t.string   "title"
     t.integer  "game_id"
+    t.string   "order",      default: "asc"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,7 +34,6 @@ ActiveRecord::Schema.define(version: 20140816011831) do
     t.decimal  "value"
     t.integer  "game_level_id"
     t.integer  "user_id"
-    t.boolean  "ascending",     default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
