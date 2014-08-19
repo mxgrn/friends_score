@@ -10,6 +10,12 @@
   %body
     %header
       = render 'layouts/navigation'
-    %main{:role => "main"}
+
+    .container{:role => "main"}
       = render 'layouts/messages'
       = yield
+
+    .footer
+      .container
+        %p.text-muted.small
+          ©#{Date.today.year} Good Bit Labs
