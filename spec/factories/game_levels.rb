@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :game_level do
     title "MyString"
+    order "asc"
     game_id 1
   end
 end

@@ -3,8 +3,7 @@
 FactoryGirl.define do
   factory :score do
     value "9.99"
-    game_level_id 1
+    association :game_level
     user_id 1
-    ascending ""
   end
 end

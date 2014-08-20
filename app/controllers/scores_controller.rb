@@ -29,6 +29,7 @@ class ScoresController < ApplicationController
 
     respond_to do |format|
       if @score.save
+        mail_new_record if @score.new_best?
         format.html { redirect_to user_scores_path(@user), notice: 'Score was successfully created.' }
         format.json { render :show, status: :created, location: @score }
       else
@@ -63,6 +64,10 @@ class ScoresController < ApplicationController
   end
 
   private
+    def mail_new_record
+      Notifications.new_record(@score).deliver
+    end
+
     def set_user
       if params[:user_id].nil?
         @user = current_user
