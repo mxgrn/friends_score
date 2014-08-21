@@ -1,5 +1,8 @@
 class GameLevel < ActiveRecord::Base
-  ORDER_VALUES = %i(asc desc)
+  ORDER_VALUES = {
+    asc: "higher is better",
+    desc: "lower is better"
+  }
 
   belongs_to :game
   has_many :scores, dependent: :destroy

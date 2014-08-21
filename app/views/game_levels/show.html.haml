@@ -8,6 +8,6 @@
   = @game_level.game.title
 %p
   %b Order:
-  = @game_level.order
+  = GameLevel::ORDER_VALUES[@game_level.order.to_sym]
 
 = link_to 'Edit', edit_game_game_level_path(@game, @game_level)
