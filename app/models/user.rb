@@ -16,4 +16,8 @@ class User < ActiveRecord::Base
   def name
     read_attribute(:name) || email
   end
+
+  def best_score_for(game_level)
+    scores.where(game_level: game_level).order(value: game_level.order.to_sym).last
+  end
 end

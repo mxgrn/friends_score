@@ -3,7 +3,7 @@
     %h3 Leader board
     %table.table.board
       %tr
-        %th &nbsp;
+        %th Game
         %th Score
         %th User
       - @best_scores.each do |game, scores|
@@ -14,7 +14,11 @@
           - scores.each do |score|
             %tr
               %td.level= score.game_level.title
-              %td= score.value
+              %td
+                = score.value
+                - if current_user && score.user != current_user
+                  %span.text-primary{title: 'Your best score'}
+                    (#{current_user.best_score_for(score.game_level).value})
               %td
                 - if score.user == current_user
                   .text-primary
