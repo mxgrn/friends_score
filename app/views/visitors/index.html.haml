@@ -8,7 +8,7 @@
         %th User
       - @best_scores.each do |game, scores|
         %tr
-          %th= link_to game.title, game_game_levels_path(game)
+          %th= link_to game.title, game_path(game)
           %th
           %th
           - scores.each do |score|
@@ -16,9 +16,9 @@
               %td.level= link_to score.game_level.title, game_game_level_path(game, score.game_level)
               %td
                 = score.value
-                - if current_user && score.user != current_user
+                - if current_user && score.user != current_user && own_best = current_user.best_score_for(score.game_level)
                   %span.text-primary{title: 'Your best score'}
-                    (#{current_user.best_score_for(score.game_level).value})
+                    (#{own_best.value})
               %td
                 - if score.user == current_user
                   .text-primary
