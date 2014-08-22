@@ -1,5 +1,5 @@
 class GameLevelsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :set_game
   before_action :set_game_level, only: [:show, :edit, :update, :destroy]
 
