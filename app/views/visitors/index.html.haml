@@ -8,12 +8,12 @@
         %th User
       - @best_scores.each do |game, scores|
         %tr
-          %th= game
+          %th= link_to game.title, game_game_levels_path(game)
           %th
           %th
           - scores.each do |score|
             %tr
-              %td.level= score.game_level.title
+              %td.level= link_to score.game_level.title, game_game_level_path(game, score.game_level)
               %td
                 = score.value
                 - if current_user && score.user != current_user

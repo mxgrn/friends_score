@@ -10,7 +10,7 @@ class VisitorsController < ApplicationController
         l.scores.order(value: l.order.to_sym).last
       end.compact
 
-      levels.empty? ? r : r.merge(g.title => levels)
+      levels.empty? ? r : r.merge(g => levels)
     end
   end
 end
