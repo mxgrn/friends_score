@@ -5,8 +5,12 @@ class VisitorsController < ApplicationController
   end
 
   def build_best_scores
-    GameLevel.all.map do |l|
-      l.scores.order(value: l.order.to_sym).last
-    end.compact
+    Game.all.inject({}) do |r,g|
+      levels = g.game_levels.map do |l|
+        l.scores.order(value: l.order.to_sym).last
+      end.compact
+
+      levels.empty? ? r : r.merge(g.title => levels)
+    end
   end
 end
