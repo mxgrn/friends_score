@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+  root to: 'visitors#index'
+
   resources :scores
 
   resources :games do
     resources :game_levels
   end
 
-  root to: 'visitors#index'
   devise_for :users
   resources :users do
     resources :scores

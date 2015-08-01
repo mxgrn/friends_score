@@ -6,9 +6,11 @@
         %th Game
         %th Score
         %th User
+        %th Date
       - @best_scores.each do |game, scores|
         %tr
           %th= link_to game.title, game_game_levels_path(game)
+          %th
           %th
           %th
           - scores.each do |score|
@@ -25,20 +27,23 @@
                     %strong you
                 - else
                   = score.user.name
+              %td= score.created_at.to_date
 
   .col-md-6
     %h3 Recent scores
     %table.table
       %tr
+        %th User
         %th Game
         %th Score
-        %th User
+        %th Date
       - @scores.each do |score|
         %tr
-          %td= score.game_level.full_title
-          %td= score.value
           %td
             - if score.user == current_user
               you
             - else
               = score.user.name
+          %td= score.game_level.full_title
+          %td= score.value
+          %td= score.created_at.to_date
