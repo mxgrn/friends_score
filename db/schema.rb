@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140816011831) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "game_levels", force: true do |t|
+  create_table "game_levels", force: :cascade do |t|
     t.string   "title"
     t.integer  "game_id"
     t.string   "order",      default: "asc"
@@ -24,13 +24,13 @@ ActiveRecord::Schema.define(version: 20140816011831) do
     t.datetime "updated_at"
   end
 
-  create_table "games", force: true do |t|
+  create_table "games", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "scores", force: true do |t|
+  create_table "scores", force: :cascade do |t|
     t.decimal  "value"
     t.integer  "game_level_id"
     t.integer  "user_id"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140816011831) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
