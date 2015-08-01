@@ -42,6 +42,7 @@ class GameLevelsController < ApplicationController
   # PATCH/PUT /game_levels/1
   # PATCH/PUT /game_levels/1.json
   def update
+    authorize @game_level
     respond_to do |format|
       if @game_level.update(game_level_params)
         format.html { redirect_to game_game_levels_path(@game), notice: 'Game level was successfully updated.' }
@@ -56,6 +57,7 @@ class GameLevelsController < ApplicationController
   # DELETE /game_levels/1
   # DELETE /game_levels/1.json
   def destroy
+    authorize @game_level
     @game_level.destroy
     respond_to do |format|
       format.html { redirect_to game_game_levels_url(@game), notice: 'Game level was successfully destroyed.' }
